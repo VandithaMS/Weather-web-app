@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Weather</title>
+        <link rel="stylesheet" href="index.css">
+        <style>
+            html {
+                height: 100%;
+              }
+            body{
+                text-align:center;
+                min-height: 100%;
+                color:white;
+                background-color:lightblue;
+                background-repeat:no-repeat;
+                background-size: 100% 100%;
+            }
+            .form{
+                position:relative;
+                font-size:20px;
+                top:0px;
+            }
+            .temp{
+                position:relative;
+                left:0px;
+                font-size:50px;
+            }
+        </style>
+    </head>
+    <body background={{img}}>
+        <h1>Weather</h1>
+        <form class="form" action="{% url 'index' %}" method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type='submit'>
+        </form>
+        <div>
+        {% if result %}
+        <h3 class="temp">{{ result.temp_now }}</h3>
+        <h3>Location : {{ result.location }}</h3>
+        <h3>Time : {{ result.time }}</h3>
+        <h3>Weather : {{ result.weather_now }}</h3>
+        {% endif %}
+        </div>
+    </body>
+</html>
